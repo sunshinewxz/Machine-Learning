@@ -321,7 +321,8 @@ def _transformer_logit_fn_builder(units, num_layers, d_model, num_heads, dff, in
             transformer = Transformer(num_layers, d_model, num_heads, dff, input_vocab_size, target_vocab_size, output_size)
             if mode == model_fn.ModeKeys.TRAIN and dropout > 0:
                 inputs = inputs[:, :-12, :]
-                tar = inputs[:, 12:, :]
+                # tar = inputs[:, 12:, :]
+                tar = labels
                 tar_inp = tar[:, :-1, :]
                 tar_real = tar[:, 1:, :]
                 combined_mask = create_masks(tar_inp)
